@@ -1,0 +1,252 @@
+@import "tailwindcss";
+
+/* ============================================================
+   F#CK FLOCK — DESIGN TOKENS
+   Brutalist surveillance-dossier aesthetic.
+   ============================================================ */
+
+@theme {
+  /* Surfaces */
+  --color-void: #07070a;
+  --color-pitch: #0c0c10;
+  --color-coal: #15151a;
+  --color-ash: #22222a;
+  --color-fog: #2e2e38;
+
+  /* Type */
+  --color-bone: #f5f1ea;
+  --color-paper: #d8d2c5;
+  --color-mute: #8a847a;
+  --color-dim: #56524b;
+
+  /* Hazards */
+  --color-blood: #ff2b1c;
+  --color-blood-deep: #c01a0d;
+  --color-amber: #ffb800;
+  --color-plate: #f5d24a; /* license-plate yellow */
+  --color-acid: #c5ff3d;
+  --color-ice: #6f8f9a;
+
+  /* Fonts */
+  --font-display: "Bebas Neue", "Anton", "Arial Narrow", sans-serif;
+  --font-serif: "Instrument Serif", "Times New Roman", serif;
+  --font-body: "IBM Plex Sans", "Helvetica Neue", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "Menlo", monospace;
+}
+
+/* ----- Base ----- */
+
+html,
+body {
+  background: var(--color-void);
+  color: var(--color-bone);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(255, 43, 28, 0.08), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 100% 100%, rgba(255, 184, 0, 0.04), transparent 70%),
+    linear-gradient(180deg, #07070a 0%, #050507 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--color-blood);
+  color: var(--color-void);
+}
+
+/* ----- Custom font loading via @import in head; fallback weights here ----- */
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+.font-serif {
+  font-family: var(--font-serif);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ----- GRAIN OVERLAY — fixed layer for entire page ----- */
+
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* ----- SCANLINES ----- */
+
+.scanlines {
+  position: relative;
+  isolation: isolate;
+}
+.scanlines::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    rgba(255, 255, 255, 0.025) 2px,
+    rgba(255, 255, 255, 0.025) 3px
+  );
+  z-index: 2;
+}
+
+/* ----- GLASS SURFACES ----- */
+
+.glass {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%),
+    rgba(20, 20, 26, 0.55);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 30px 60px -30px rgba(0, 0, 0, 0.8);
+}
+
+.glass-hot {
+  background:
+    linear-gradient(135deg, rgba(255, 43, 28, 0.06) 0%, rgba(255, 43, 28, 0) 50%),
+    rgba(20, 14, 14, 0.6);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  border: 1px solid rgba(255, 43, 28, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 30px 60px -30px rgba(192, 26, 13, 0.4);
+}
+
+.glass-amber {
+  background:
+    linear-gradient(135deg, rgba(255, 184, 0, 0.05) 0%, rgba(255, 184, 0, 0) 60%),
+    rgba(20, 18, 12, 0.6);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  border: 1px solid rgba(255, 184, 0, 0.15);
+}
+
+/* ----- HAZARD STRIPES ----- */
+
+.hazard {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-amber) 0,
+    var(--color-amber) 14px,
+    var(--color-void) 14px,
+    var(--color-void) 28px
+  );
+}
+
+/* ----- REDACTED ----- */
+
+.redacted {
+  background: var(--color-void);
+  color: var(--color-void);
+  padding: 0 0.4em;
+  border-radius: 1px;
+  user-select: none;
+  position: relative;
+}
+.redacted::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: var(--color-void);
+  border-radius: 1px;
+}
+
+/* ----- TICKER MARQUEE ----- */
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 60s linear infinite;
+  display: flex;
+  white-space: nowrap;
+  width: max-content;
+}
+
+/* ----- SLOW PULSE for status dots ----- */
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 43, 28, 0.6); }
+  50%      { opacity: 0.85; box-shadow: 0 0 0 8px rgba(255, 43, 28, 0); }
+}
+.pulse-dot {
+  animation: pulse-slow 2.4s ease-in-out infinite;
+}
+
+/* ----- SUBTLE FLICKER for the brand mark ----- */
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 100% { opacity: 1; }
+  20%, 22%                { opacity: 0.65; }
+}
+.flicker { animation: flicker 8s infinite; }
+
+/* ----- HOVER-LIFT for cards ----- */
+
+.lift {
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.3s ease,
+              box-shadow 0.4s ease;
+}
+.lift:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 43, 28, 0.4);
+}
+
+/* ----- LICENSE PLATE BADGE ----- */
+
+.plate {
+  background: linear-gradient(180deg, #fbe06a 0%, #f5d24a 50%, #e8c33b 100%);
+  color: #0a0a0a;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border: 2px solid #08080a;
+  border-radius: 4px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* ----- SCROLLBAR ----- */
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-void); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-ash);
+  border-left: 1px solid var(--color-blood);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-fog); }
+
+/* ----- KILLSWITCH for any default link colors ----- */
+
+a { color: inherit; }
+
+/* ----- UTILITIES ----- */
+
+.text-balance { text-wrap: balance; }
+.text-pretty { text-wrap: pretty; }
