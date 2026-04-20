@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "F#CK FLOCK — The Rebellion Against America's License-Plate Dragnet",
   description:
     "How a $7.5B surveillance empire became the most-sued, most-cancelled vendor in American policing. A live dossier of the lawsuits, laws, and citizen revolt against Flock Safety.",
-  metadataBase: new URL("https://fuckflock.example"),
+  metadataBase: new URL("https://fckflock.com"),
   openGraph: {
     title: "F#CK FLOCK",
     description:
