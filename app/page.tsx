@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       {/* ============== HERO ============== */}
-      <section className="relative min-h-[88vh] px-4 sm:px-8 pt-16 sm:pt-20 pb-24 overflow-hidden scanlines">
+      <section className="relative min-h-[88vh] px-8 sm:px-16 pt-10 sm:pt-14 pb-24 overflow-hidden scanlines">
         {/* Decorative crosshair grid */}
         <div
           aria-hidden
@@ -44,6 +44,11 @@ export default function Home() {
               </span>
             </h1>
 
+            {/* ---------- INLINE TAKEDOWN BUTTON (mobile/tablet only) ---------- */}
+            <div className="mt-6 flex justify-center lg:hidden">
+              <TakeDownButton variant="inline" />
+            </div>
+
             <p className="font-serif italic text-2xl sm:text-3xl text-[var(--color-paper)] mt-6 max-w-2xl leading-snug text-pretty">
               How a $7.5 billion surveillance empire became the most-sued,
               most-cancelled vendor in American policing — and the citizen
@@ -73,11 +78,6 @@ export default function Home() {
               >
                 See the cancellations →
               </Link>
-            </div>
-
-            {/* ---------- INLINE TAKEDOWN BUTTON (mobile/tablet only) ---------- */}
-            <div className="mt-12 flex justify-center lg:hidden">
-              <TakeDownButton variant="inline" />
             </div>
           </div>
 
@@ -112,7 +112,7 @@ export default function Home() {
               pointer-events-none
             "
           >
-            <div className="pointer-events-auto mb-80 pr-40">
+            <div className="pointer-events-auto mb-75 pr-40">
               <TakeDownButton variant="floating" />
             </div>
           </div>
