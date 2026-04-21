@@ -112,7 +112,7 @@ export default function Home() {
               pointer-events-none
             "
           >
-            <div className="pointer-events-auto mb-90 pr-40">
+            <div className="pointer-events-auto mb-80 pr-40">
               <TakeDownButton variant="floating" />
             </div>
           </div>
