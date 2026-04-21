@@ -1,9 +1,21 @@
-"use client";
-
+import type { Metadata } from "next";
 import { LAWSUITS, STATUTES } from "@/data/content";
 import { SectionHeader, Tag } from "@/components/UI";
 
-export default function Legal() {
+export const metadata: Metadata = {
+  title: "Legal — F#CK FLOCK",
+  description:
+    "Lawsuits, state statutes, and AG enforcement actions reshaping ALPR doctrine in 2025–2026.",
+};
+
+function statusTone(s: string): "hot" | "amber" | "ice" | "default" {
+  if (s.includes("appeal") || s.includes("Filed")) return "hot";
+  if (s.includes("Settled")) return "amber";
+  if (s.includes("Decided")) return "ice";
+  return "default";
+}
+
+export default function LegalPage() {
   return (
     <div className="px-4 sm:px-8 py-20 max-w-[1500px] mx-auto">
       <SectionHeader
@@ -25,7 +37,6 @@ export default function Legal() {
         }
       />
 
-      {/* Lawsuits */}
       <div className="mt-16">
         <div className="flex items-baseline justify-between mb-8">
           <h2 className="font-display text-4xl sm:text-5xl tracking-wide">
@@ -62,7 +73,6 @@ export default function Legal() {
         </div>
       </div>
 
-      {/* Statutes */}
       <div className="mt-24">
         <div className="flex items-baseline justify-between mb-8">
           <h2 className="font-display text-4xl sm:text-5xl tracking-wide">
@@ -97,7 +107,6 @@ export default function Legal() {
         </div>
       </div>
 
-      {/* Carpenter callout */}
       <div className="mt-24 glass-hot p-8 sm:p-12 relative overflow-hidden">
         <div
           aria-hidden
@@ -119,11 +128,4 @@ export default function Legal() {
       </div>
     </div>
   );
-}
-
-function statusTone(s: string): "hot" | "amber" | "ice" | "default" {
-  if (s.includes("appeal") || s.includes("Filed")) return "hot";
-  if (s.includes("Settled")) return "amber";
-  if (s.includes("Decided")) return "ice";
-  return "default";
 }

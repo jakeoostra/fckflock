@@ -1,5 +1,3 @@
-"use client";
-
 const TICKER = [
   "20 BILLION plate scans per month",
   "80,000+ cameras across 5,000+ communities",

@@ -1,11 +1,45 @@
-"use client";
-
+import type { Metadata } from "next";
 import { ACTION_STEPS } from "@/data/content";
 import { SectionHeader } from "@/components/UI";
 
-export default function Act() {
+export const metadata: Metadata = {
+  title: "Act — F#CK FLOCK",
+  description:
+    "Six proven steps — from mapping cameras to funding litigation — that have already cancelled 30+ Flock contracts.",
+};
+
+function Resource({
+  title,
+  url,
+  hint,
+}: {
+  title: string;
+  url: string;
+  hint: string;
+}) {
   return (
-    <div className="px-4 sm:px-8 py-20 max-w-[1500px] mx-auto" id="act">
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="glass lift p-5 group flex items-start justify-between gap-3"
+    >
+      <div>
+        <p className="font-display text-xl tracking-wide mb-1">{title}</p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-mute)]">
+          {hint}
+        </p>
+      </div>
+      <span className="text-[var(--color-blood)] font-mono group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform shrink-0">
+        ↗
+      </span>
+    </a>
+  );
+}
+
+export default function ActPage() {
+  return (
+    <div className="px-4 sm:px-8 py-20 max-w-[1500px] mx-auto">
       <SectionHeader
         number="04"
         eyebrow="Act — Six Things That Have Already Worked"
@@ -25,7 +59,6 @@ export default function Act() {
         }
       />
 
-      {/* Steps */}
       <div className="mt-12 grid md:grid-cols-2 gap-5">
         {ACTION_STEPS.map((s, i) => (
           <article
@@ -51,7 +84,6 @@ export default function Act() {
         ))}
       </div>
 
-      {/* Resource grid */}
       <div className="mt-24">
         <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-mute)] mb-6">
           ▸ Direct links
@@ -86,7 +118,6 @@ export default function Act() {
         </div>
       </div>
 
-      {/* Final CTA */}
       <div className="mt-24 glass-hot p-10 sm:p-16 text-center relative overflow-hidden">
         <div
           aria-hidden
@@ -105,34 +136,5 @@ export default function Act() {
         </p>
       </div>
     </div>
-  );
-}
-
-function Resource({
-  title,
-  url,
-  hint,
-}: {
-  title: string;
-  url: string;
-  hint: string;
-}) {
-  return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="glass lift p-5 group flex items-start justify-between gap-3"
-    >
-      <div>
-        <p className="font-display text-xl tracking-wide mb-1">{title}</p>
-        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-mute)]">
-          {hint}
-        </p>
-      </div>
-      <span className="text-[var(--color-blood)] font-mono group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform shrink-0">
-        ↗
-      </span>
-    </a>
   );
 }

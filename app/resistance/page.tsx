@@ -1,9 +1,35 @@
-"use client";
-
+import type { Metadata } from "next";
 import { CITIES_TERMINATED, COALITION } from "@/data/content";
 import { SectionHeader, Tag } from "@/components/UI";
 
-export default function Resistance() {
+export const metadata: Metadata = {
+  title: "Resistance — F#CK FLOCK",
+  description:
+    "Thirty-plus Flock contracts terminated or paused, and the citizen coalition that put them there.",
+};
+
+function PatternBox({
+  title,
+  body,
+  tone = "default",
+}: {
+  title: string;
+  body: string;
+  tone?: "default" | "hot" | "amber";
+}) {
+  const cls =
+    tone === "hot" ? "glass-hot" : tone === "amber" ? "glass-amber" : "glass";
+  return (
+    <div className={`${cls} p-6`}>
+      <h4 className="font-display text-2xl tracking-wide mb-3">{title}</h4>
+      <p className="text-sm text-[var(--color-paper)] leading-relaxed text-pretty">
+        {body}
+      </p>
+    </div>
+  );
+}
+
+export default function ResistancePage() {
   return (
     <div className="px-4 sm:px-8 py-20 max-w-[1500px] mx-auto">
       <SectionHeader
@@ -24,7 +50,6 @@ export default function Resistance() {
         }
       />
 
-      {/* Kill list */}
       <div className="mt-12">
         <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-mute)] mb-4 flex items-center gap-3">
           <span className="w-2 h-2 bg-[var(--color-blood)] rounded-full" />
@@ -62,7 +87,6 @@ export default function Resistance() {
         </div>
       </div>
 
-      {/* Pattern callout */}
       <div className="mt-16 grid md:grid-cols-3 gap-4">
         <PatternBox
           title="Unauthorized installs"
@@ -80,7 +104,6 @@ export default function Resistance() {
         />
       </div>
 
-      {/* Coalition */}
       <div className="mt-32">
         <SectionHeader
           eyebrow="The Coalition"
@@ -126,7 +149,6 @@ export default function Resistance() {
         </div>
       </div>
 
-      {/* Final pull */}
       <div className="mt-24 max-w-4xl mx-auto text-center">
         <p className="font-serif italic text-3xl sm:text-4xl text-[var(--color-paper)] leading-snug text-balance">
           "It was like we were{" "}
@@ -139,27 +161,6 @@ export default function Resistance() {
           — Sandy Boyce, Sedona AZ resident, Aug 2025
         </p>
       </div>
-    </div>
-  );
-}
-
-function PatternBox({
-  title,
-  body,
-  tone = "default",
-}: {
-  title: string;
-  body: string;
-  tone?: "default" | "hot" | "amber";
-}) {
-  const cls =
-    tone === "hot" ? "glass-hot" : tone === "amber" ? "glass-amber" : "glass";
-  return (
-    <div className={`${cls} p-6`}>
-      <h4 className="font-display text-2xl tracking-wide mb-3">{title}</h4>
-      <p className="text-sm text-[var(--color-paper)] leading-relaxed text-pretty">
-        {body}
-      </p>
     </div>
   );
 }

@@ -1,5 +1,3 @@
-"use client";
-
 /**
  * Stylized SVG of a Flock-style ALPR camera mounted on a pole
  * with solar panel — modeled on the reference photos. This is
